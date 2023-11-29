@@ -1,8 +1,7 @@
-![](https://i.imgur.com/xG74tOh.png)
 
-# Desafio Back-end | Módulo 3
+# API controle financeiro
 
-Seu papel é construir uma RESTful API que permita:
+### A ideia do projeto é a construção de uma RESTful API que contenha as seguintes funcionalidades:
 
 - Cadastrar Usuário
 - Fazer Login 
@@ -14,29 +13,40 @@ Seu papel é construir uma RESTful API que permita:
 - Cadastrar transação 
 - Editar transação 
 - Remover transação 
-- [Extra] Obter extrato de transações 
-- [Extra] Filtrar transações por categoria 
 
-**Importante: Lembre-se sempre que cada usuário só pode ver e manipular seus próprios dados e suas próprias transações. Não atender a este pré-requisito é uma falha de segurança gravíssima!**
+### Para rodar a aplicação é necessário os seguintes programas instalados:
 
-**Importante 2: Sempre que a validação de uma requisição falhar, responda com código de erro e mensagem adequada à situação, ok?**
+- nodeJS
+- Postgres
+- beekeeper studio
+- Visual studio code
+- expressJS
+- insomnia
 
-**Importante 3: O link de acesso a esta API se encontra no final deste README. Este link é somente para testes (ou seja, será possível realizar requisições a esta API através do link fornecido visando AUXILIAR principalmente o desenvolvimento do desafio de Front-end, o que permitirá o desenvolvimento em paralelo de ambos os desafios)!**
-
-**Exemplo:**
+### Para instalar e rodar a aplicação basta fazer o fork do repositório no github utilizando o git clone + chave SSh/https após isso executar os seguites comandos:
 
 ```javascript
-// Quando é informado um id de transação que não existe:
-// HTTP Status 404
-{
-    "mensagem": "Transação não encontrada!"
-}
+no terminal apos clonar o repositório na sua máquina execute os seguintes comandos:
+
+- npm init -y
+- npm install
+- npm run dev 
 ```
+### No insomnia criar as seguitnes rotas:
+![image](https://github.com/MateusVenega/Projeto-API-controle-financeiro/assets/129709846/5ae8eb47-f1b7-4212-bc07-3f574556e897)
+- cadastrar usuário: ![image](https://github.com/MateusVenega/Projeto-API-controle-financeiro/assets/129709846/285a0305-5d10-45b0-82ae-0542b08cf5ed)
+- login usuário : ![image](https://github.com/MateusVenega/Projeto-API-controle-financeiro/assets/129709846/c49d7055-790e-4a8d-9939-25d52a38b618)
+- atualizar usuário: ![image](https://github.com/MateusVenega/Projeto-API-controle-financeiro/assets/129709846/8d92df7e-5562-4942-9b91-11669b05b08f)
+- detalhar usuário: ![image](https://github.com/MateusVenega/Projeto-API-controle-financeiro/assets/129709846/da8e2234-f378-4179-ad6d-083f2058ee24)
+- listar transações : ![image](https://github.com/MateusVenega/Projeto-API-controle-financeiro/assets/129709846/2a6f2350-c2c8-4bba-bbc7-e158588b0225)
+- listar categporias : ![image](https://github.com/MateusVenega/Projeto-API-controle-financeiro/assets/129709846/982cdcd7-1a2e-41bd-9dbe-00264c1f1a43)
+- cadastrar transação: ![image](https://github.com/MateusVenega/Projeto-API-controle-financeiro/assets/129709846/58000d7c-27bf-437e-b484-385e80821723)
+- atualizar transação: ![image](https://github.com/MateusVenega/Projeto-API-controle-financeiro/assets/129709846/c607d784-5041-45bb-b862-9c49791a284f)
+- deletar transação: ![image](https://github.com/MateusVenega/Projeto-API-controle-financeiro/assets/129709846/72e08bf1-2536-4661-b786-4a8ab92221b6)
 
-## **Banco de dados**
+## Banco de dados
 
-Você precisa criar um Banco de Dados PostgreSQL chamado `dindin` contendo as seguintes tabelas e colunas:  
-**ATENÇÃO! Os nomes das tabelas e das colunas a serem criados devem seguir exatamente os nomes listados abaixo.**
+O banco de dados criado a partir dos comandos contidos em dump.sql sera um Banco de Dados PostgreSQL chamado `dindin` contendo as seguintes tabelas e colunas:  
 
 - usuarios
   - id
@@ -55,12 +65,8 @@ Você precisa criar um Banco de Dados PostgreSQL chamado `dindin` contendo as se
   - usuario_id
   - tipo
 
-**IMPORTANTE: Deverá ser criado no projeto o(s) arquivo(s) SQL que deverá ser o script que cria as tabelas corretamente.**
-
-As categorias a seguir precisam ser previamente cadastradas para que sejam listadas no endpoint de listagem das categorias.
-
-## **Categorias**
-
+**categorias:**
+  
 - Alimentação
 - Assinaturas e Serviços
 - Casa
@@ -79,38 +85,9 @@ As categorias a seguir precisam ser previamente cadastradas para que sejam lista
 - Outras receitas
 - Outras despesas
 
-**IMPORTANTE: Deverá ser criado no projeto o arquivo SQL que deverá ser o script de inserção das categorias acima na tabela.**
+## Endpoints
 
-## **Requisitos obrigatórios**
-
-- A API a ser criada deverá acessar o banco de dados a ser criado "dindin" para persistir e manipular os dados de usuários, categorias e transações utilizados pela aplicação.
-- O campo `id` das tabelas no banco de dados deve ser auto incremento, chave primária e não deve permitir edição uma vez criado.
-- Seu código deverá estar organizado, delimitando as responsabilidades de cada arquivo adequadamente. Ou seja, é esperado que ele tenha, no mínimo:
-  - Um arquivo index.js
-  - Um arquivo conexao.js
-  - Um arquivo de rotas
-  - Um pasta com controladores
-- Qualquer valor monetário deverá ser representado em centavos (Ex.: R$ 10,00 reais = 1000)
-- Evite códigos duplicados. Antes de copiar e colar, pense se não faz sentido esse pedaço de código estar centralizado numa função.
-
-## **Status Codes**
-
-Abaixo, listamos os possíveis **_status codes_** esperados como resposta da API.
-
-```javascript
-// 200 (OK) = requisição bem sucedida
-// 201 (Created) = requisição bem sucedida e algo foi criado
-// 204 (No Content) = requisição bem sucedida, sem conteúdo no corpo da resposta
-// 400 (Bad Request) = o servidor não entendeu a requisição pois está com uma sintaxe/formato inválido
-// 401 (Unauthorized) = o usuário não está autenticado (logado)
-// 403 (Forbidden) = o usuário não tem permissão de acessar o recurso solicitado
-// 404 (Not Found) = o servidor não pode encontrar o recurso solicitado
-```
-
-## **Endpoints**
----
-# Pessoa A
-### **Cadastrar usuário**
+### Cadastrar usuário
 #### `POST` `/usuario`
 
 Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
@@ -122,13 +99,7 @@ Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
   - nome
   - email
   - senha
-
-- **Resposta**  
-    Em caso de **sucesso**, deveremos enviar no corpo (body) da resposta o conteúdo do usuário cadastrado, incluindo seu respectivo `id` e excluindo a senha criptografada.
-    Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
-
-- **REQUISITOS OBRIGATÓRIOS**
-  - Validar os campos obrigatórios:
+  ** A rota tambem deve validar os campos obrigatórios:
     - nome
     - email
     - senha
@@ -146,28 +117,12 @@ Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
     "senha": "123456"
 }
 ```
-
-#### **Exemplos de resposta**
-
 ```javascript
-// HTTP Status 200 / 201 / 204
-{
-    "id": 1,
-    "nome": "José",
-    "email": "jose@email.com"
-}
-```
-
-```javascript
-// HTTP Status 400 / 401 / 403 / 404
 {
     "mensagem": "Já existe usuário cadastrado com o e-mail informado."
 }
 ```
-
----
-# Pessoa A
-### **Login do usuário**
+### Login do usuário
 
 #### `POST` `/login`
 
@@ -180,11 +135,7 @@ Essa é a rota que permite o usuario cadastrado realizar o login no sistema.
   - email
   - senha
 
-- **Resposta**  
-    Em caso de **sucesso**, o corpo (body) da resposta deverá possuir um objeto com a propriedade **token** que deverá possuir como valor o token de autenticação gerado e uma propriedade **usuario** que deverá possuir as informações do usuário autenticado, exceto a senha do usuário.  
-    Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
-
-- **REQUISITOS OBRIGATÓRIOS**
+- **funcionalidades da rota: **
 
   - Validar os campos obrigatórios:
     - email
@@ -206,7 +157,6 @@ Essa é a rota que permite o usuario cadastrado realizar o login no sistema.
 #### **Exemplos de resposta**
 
 ```javascript
-// HTTP Status 200 / 201 / 204
 {
     "usuario": {
         "id": 1,
@@ -218,42 +168,26 @@ Essa é a rota que permite o usuario cadastrado realizar o login no sistema.
 ```
 
 ```javascript
-// HTTP Status 400 / 401 / 403 / 404
 {
     "mensagem": "Usuário e/ou senha inválido(s)."
 }
 ```
+## ATENÇÃO: Todas as funcionalidades (endpoints) a seguir, a partir desse ponto, irão exigir o token de autenticação do usuário logado, recebendo no header com o formato Bearer Token. Portanto, em cada funcionalidade será necessário validar o token informado. Para inserir o token no insomnia basta ir na opção bearer e inserir o token fornecido ao usuário no momento do login.
 
----
+![image](https://github.com/MateusVenega/Projeto-API-controle-financeiro/assets/129709846/1b84bf08-36a3-48ba-9f26-cfd95f19b154)
 
-## **ATENÇÃO**: Todas as funcionalidades (endpoints) a seguir, a partir desse ponto, deverão exigir o token de autenticação do usuário logado, recebendo no header com o formato Bearer Token. Portanto, em cada funcionalidade será necessário validar o token informado
-
----
-
-### **Validações do token**
-
-- **REQUISITOS OBRIGATÓRIOS**
-  - Validar se o token foi enviado no header da requisição (Bearer Token)
-  - Verificar se o token é válido
-  - Consultar usuário no banco de dados pelo id contido no token informado
-
----
-# Pessoa B
-### **Detalhar usuário**
+### Detalhar usuário
 
 #### `GET` `/usuario`
 
 Essa é a rota que será chamada quando o usuario quiser obter os dados do seu próprio perfil.  
-**Atenção!:** O usuário deverá ser identificado através do ID presente no token de autenticação.
 
 - **Requisição**  
     Sem parâmetros de rota ou de query.  
     Não deverá possuir conteúdo no corpo da requisição.
 
 - **Resposta**  
-    Em caso de **sucesso**, o corpo (body) da resposta deverá possuir um objeto que representa o usuário encontrado, com todas as suas propriedades (exceto a senha), conforme exemplo abaixo, acompanhado de **_status code_** apropriado.  
-    Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.  
-    **Dica:** neste endpoint podemos fazer uso do status code 401 (Unauthorized).
+    Em caso de **sucesso**, o corpo (body) da resposta devolvera um objeto que representa o usuário encontrado, com todas as suas propriedades (exceto a senha), conforme exemplo abaixo:  
 
 #### **Exemplo de requisição**
 
@@ -265,7 +199,6 @@ Essa é a rota que será chamada quando o usuario quiser obter os dados do seu p
 #### **Exemplos de resposta**
 
 ```javascript
-// HTTP Status 200 / 201 / 204
 {
     "id": 1,
     "nome": "José",
@@ -274,14 +207,11 @@ Essa é a rota que será chamada quando o usuario quiser obter os dados do seu p
 ```
 
 ```javascript
-// HTTP Status 400 / 401 / 403 / 404
 {
     "mensagem": "Para acessar este recurso um token de autenticação válido deve ser enviado."
 }
 ```
----
-# Pessoa B
-### **Atualizar usuário**
+### Atualizar usuário
 
 #### `PUT` `/usuario`
 
@@ -297,16 +227,16 @@ Essa é a rota que será chamada quando o usuário quiser realizar alterações 
   - senha
 
 - **Resposta**  
-    Em caso de **sucesso**, não deveremos enviar conteúdo no corpo (body) da resposta.  
-    Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
+    Em caso de **sucesso**, nada sera enviado como conteúdo no corpo (body) da resposta.  
+    Em caso de **falha na validação**, a resposta devera entregar em seu corpo (body) um objeto com uma propriedade **mensagem** possuirá  como valor um texto explicando o motivo da falha.
 
-- **REQUISITOS OBRIGATÓRIOS**
+- **funcionalidades do endpoint: **
   - Validar os campos obrigatórios:
     - nome
     - email
     - senha
   - Validar se o novo e-mail já existe no banco de dados para outro usuário
-    - Caso já exista o novo e-mail fornecido para outro usuário no banco de dados, a alteração não deve ser permitida (o campo de email deve ser sempre único no banco de dados)
+    - Caso já exista o novo e-mail fornecido para outro usuário no banco de dados, a alteração não sera permitida
   - Criptografar a senha antes de salvar no banco de dados
   - Atualizar as informações do usuário no banco de dados
 
@@ -324,34 +254,28 @@ Essa é a rota que será chamada quando o usuário quiser realizar alterações 
 #### **Exemplos de resposta**
 
 ```javascript
-// HTTP Status 200 / 201 / 204
 // Sem conteúdo no corpo (body) da resposta
 ```
 
 ```javascript
-// HTTP Status 400 / 401 / 403 / 404
 {
     "mensagem": "O e-mail informado já está sendo utilizado por outro usuário."
 }
 ```
----
-# Pessoa B
-### **Listar categorias**
+
+### Listar categorias
 
 #### `GET` `/categoria`
 
 Essa é a rota que será chamada quando o usuario logado quiser listar todas as categorias cadastradas.
 
-- **Requisição**  
+- **Requisição** 
     Sem parâmetros de rota ou de query.  
     Não deverá possuir conteúdo no corpo (body) da requisição.
-
+  
 - **Resposta**  
-    Em caso de **sucesso**, o corpo (body) da resposta deverá possuir um array dos objetos (categorias) encontrados.  
-    Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
-
-- **REQUISITOS OBRIGATÓRIOS**
-  - O endpoint deverá responder com um array de todas as categorias cadastradas.
+    Em caso de **sucesso**, o corpo (body) da resposta possuirá um array dos objetos (categorias) encontrados.  
+    Em caso de **falha na validação**, a resposta sera um  **_status code_** apropriado, e em seu corpo (body) sera enviado um objeto com uma propriedade **mensagem** que possuirá como valor um texto explicando o motivo da falha.
 
 #### **Exemplo de requisição**
 
@@ -363,7 +287,6 @@ Essa é a rota que será chamada quando o usuario logado quiser listar todas as 
 #### **Exemplos de resposta**
 
 ```javascript
-// HTTP Status 200 / 201 / 204
 [
     {
         id: 1,
@@ -377,29 +300,21 @@ Essa é a rota que será chamada quando o usuario logado quiser listar todas as 
 ```
 
 ```javascript
-// HTTP Status 200 / 201 / 204
 []
 ```
----
-# Pessoa B
-### **Listar transações do usuário logado**
+### Listar transações do usuário logado
 
 #### `GET` `/transacao`
 
-Essa é a rota que será chamada quando o usuario logado quiser listar todas as suas transações cadastradas.  
-**Lembre-se:** Deverão ser retornadas **apenas** transações associadas ao usuário logado, que deverá ser identificado através do ID presente no token de validação.
+Essa é a rota que será chamada quando o usuario logado quiser listar todas as suas transações cadastradas, serão retornadas somente as transações associadas ao usuário logado, que deverá ser identificado através do ID presente no token de validação.
 
 - **Requisição**  
     Sem parâmetros de rota ou de query.  
     Não deverá possuir conteúdo no corpo (body) da requisição.
 
 - **Resposta**  
-    Em caso de **sucesso**, o corpo (body) da resposta deverá possuir um array dos objetos (transações) encontrados.  
-    Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
-
-- **REQUISITOS OBRIGATÓRIOS**
-  - O usuário deverá ser identificado através do ID presente no token de validação
-  - O endpoint deverá responder com um array de todas as transações associadas ao usuário. Caso não exista nenhuma transação associada ao usuário deverá responder com array vazio.
+    Em caso de **sucesso**, o corpo (body) da resposta possuirá um array dos objetos (transações) encontrados.  
+    Em caso de **falha na validação**, a resposta sera um  **_status code_** apropriado, e em seu corpo (body) sera enviado um objeto com uma propriedade **mensagem** que possuirá como valor um texto explicando o motivo da falha.
 
 #### **Exemplo de requisição**
 
@@ -411,7 +326,6 @@ Essa é a rota que será chamada quando o usuario logado quiser listar todas as 
 #### **Exemplos de resposta**
 
 ```javascript
-// HTTP Status 200 / 201 / 204
 [
     {
         id: 1,
@@ -435,31 +349,20 @@ Essa é a rota que será chamada quando o usuario logado quiser listar todas as 
     },
 ]
 ```
-
-```javascript
-// HTTP Status 200 / 201 / 204
-[]
-```
----
-# Pessoa A
-### **Detalhar uma transação do usuário logado**
+### Detalhar uma transação do usuário logado
 
 #### `GET` `/transacao/:id`
 
-Essa é a rota que será chamada quando o usuario logado quiser obter uma das suas transações cadastradas.  
-**Lembre-se:** Deverá ser retornado **apenas** transação associada ao usuário logado, que deverá ser identificado através do ID presente no token de validação.
+Essa é a rota que será chamada quando o usuario logado quiser obter uma das suas transações cadastradas, onde sera retornada **apenas** a transação associada ao usuário logado, que deverá ser identificado através do ID presente no token de validação.
 
 - **Requisição**  
     Deverá ser enviado o ID da transação no parâmetro de rota do endpoint.  
     O corpo (body) da requisição não deverá possuir nenhum conteúdo.
 
 - **Resposta**  
-    Em caso de **sucesso**, o corpo (body) da resposta deverá possuir um objeto que representa a transação encontrada, com todas as suas propriedades, conforme exemplo abaixo, acompanhado de **_status code_** apropriado.  
-    Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
-
-- **REQUISITOS OBRIGATÓRIOS**
-  - Validar se existe transação para o id enviado como parâmetro na rota e se esta transação pertence ao usuário logado.
-
+    Em caso de **sucesso**, o corpo (body) da resposta deverá possuir um objeto que representa a transação encontrada, com todas as suas propriedades
+    Em caso de **falha na validação**, a resposta sera um  **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
+  
 #### **Exemplo de requisição**
 
 ```javascript
@@ -470,7 +373,6 @@ Essa é a rota que será chamada quando o usuario logado quiser obter uma das su
 #### **Exemplos de resposta**
 
 ```javascript
-// HTTP Status 200 / 201 / 204
 {
     "id": 2,
     "tipo": "entrada",
@@ -484,19 +386,16 @@ Essa é a rota que será chamada quando o usuario logado quiser obter uma das su
 ```
 
 ```javascript
-// HTTP Status 400 / 401 / 403 / 404
 {
     "mensagem": "Transação não encontrada."
 }
 ```
----
-# Pessoa A
-### **Cadastrar transação para o usuário logado**
+
+### Cadastrar transação para o usuário logado
 
 #### `POST` `/transacao`
 
-Essa é a rota que será utilizada para cadastrar uma transação associada ao usuário logado.  
-**Lembre-se:** Deverá ser possível cadastrar **apenas** transações associadas ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
+Essa é a rota que será utilizada para cadastrar uma transação associada ao usuário logado.Deverá ser possível cadastrar apenas transações associadas ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
 
 - **Requisição**  
     Sem parâmetros de rota ou de query.  
@@ -510,9 +409,9 @@ Essa é a rota que será utilizada para cadastrar uma transação associada ao u
 
 - **Resposta**
     Em caso de **sucesso**, deveremos enviar, no corpo (body) da resposta, as informações da transação cadastrada, incluindo seu respectivo `id`.  
-    Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
+    Em caso de **falha na validação**, a resposta sera um  **_status code_** apropriado, e em seu corpo (body) sera enviado um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
 
-- **REQUISITOS OBRIGATÓRIOS**
+- **funcionalidades do endpoint:**
   - Validar os campos obrigatórios:
     - descricao
     - valor
@@ -539,7 +438,6 @@ Essa é a rota que será utilizada para cadastrar uma transação associada ao u
 #### **Exemplos de resposta**
 
 ```javascript
-// HTTP Status 200 / 201 / 204
 {
     "id": 3,
     "tipo": "entrada",
@@ -553,23 +451,19 @@ Essa é a rota que será utilizada para cadastrar uma transação associada ao u
 ```
 
 ```javascript
-// HTTP Status 400 / 401 / 403 / 404
 {
     "mensagem": "Todos os campos obrigatórios devem ser informados."
 }
 ```
----
-# Pessoa B
-### **Atualizar transação do usuário logado**
+### Atualizar transação do usuário logado
 
 #### `PUT` `/transacao/:id`
 
-Essa é a rota que será chamada quando o usuario logado quiser atualizar uma das suas transações cadastradas.  
-**Lembre-se:** Deverá ser possível atualizar **apenas** transações associadas ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
+Essa é a rota que será chamada quando o usuario logado quiser atualizar uma das suas transações cadastradas. Deverá ser possível atualizar apenas transações associadas ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
 
 - **Requisição**  
     Deverá ser enviado o ID da transação no parâmetro de rota do endpoint.  
-    O corpo (body) da requisição deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
+    O corpo (body) da requisição deverá possuir um objeto com as seguintes propriedades:
 
   - descricao
   - valor
@@ -578,10 +472,10 @@ Essa é a rota que será chamada quando o usuario logado quiser atualizar uma da
   - tipo (campo que será informado se a transação corresponde a uma saída ou entrada de valores)
 
 - **Resposta**  
-    Em caso de **sucesso**, não deveremos enviar conteúdo no corpo (body) da resposta.  
-    Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
+    Em caso de **sucesso**, nada sera enviado como  conteúdo no corpo (body) da resposta.  
+    Em caso de **falha na validação**, a resposta sera um **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
 
-- **REQUISITOS OBRIGATÓRIOS**
+- **funcionalidades do endpoint:**
   - Validar se existe transação para o id enviado como parâmetro na rota e se esta transação pertence ao usuário logado.
   - Validar os campos obrigatórios:
     - descricao
@@ -596,7 +490,6 @@ Essa é a rota que será chamada quando o usuario logado quiser atualizar uma da
 #### **Exemplo de requisição**
 
 ```javascript
-// PUT /transacao/2
 {
  "descricao": "Sapato amarelo",
  "valor": 15800,
@@ -609,34 +502,30 @@ Essa é a rota que será chamada quando o usuario logado quiser atualizar uma da
 #### **Exemplos de resposta**
 
 ```javascript
-// HTTP Status 200 / 201 / 204
 // Sem conteúdo no corpo (body) da resposta
 ```
 
 ```javascript
-// HTTP Status 400 / 401 / 403 / 404
 {
     "mensagem": "Todos os campos obrigatórios devem ser informados."
 }
 ```
 ---
-# Pessoa B
-### **Excluir transação do usuário logado**
+### Excluir transação do usuário logado
 
 #### `DELETE` `/transacao/:id`
 
-Essa é a rota que será chamada quando o usuario logado quiser excluir uma das suas transações cadastradas.  
-**Lembre-se:** Deverá ser possível excluir **apenas** transações associadas ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
+Essa é a rota que será chamada quando o usuario logado quiser excluir uma das suas transações cadastradas, onde sera possível excluir apenas transações associadas ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
 
 - **Requisição**  
     Deverá ser enviado o ID da transação no parâmetro de rota do endpoint.  
     O corpo (body) da requisição não deverá possuir nenhum conteúdo.
 
 - **Resposta**  
-    Em caso de **sucesso**, não deveremos enviar conteúdo no corpo (body) da resposta.  
-    Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
+    Em caso de **sucesso**, nada sera enviado conteúdo no corpo (body) da resposta.  
+    Em caso de **falha na validação**, a resposta sera um **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
 
-- **REQUISITOS OBRIGATÓRIOS**:
+- **funcionalidades do endpoint**:
   - Validar se existe transação para o id enviado como parâmetro na rota e se esta transação pertence ao usuário logado.
   - Excluir a transação no banco de dados.
 
@@ -650,133 +539,11 @@ Essa é a rota que será chamada quando o usuario logado quiser excluir uma das 
 #### **Exemplos de resposta**
 
 ```javascript
-// HTTP Status 200 / 201 / 204
 // Sem conteúdo no corpo (body) da resposta
 ```
 
 ```javascript
-// HTTP Status 400 / 401 / 403 / 404
 {
     "mensagem": "Transação não encontrada."
 }
 ```
----
-# Pessoa B
-## **EXTRA**
-
-**ATENÇÃO!:** Esta parte extra não é obrigatória e recomendamos que seja feita apenas quando terminar toda a parte obrigatória acima.
-
-### **Obter extrato de transações**
-
-#### `GET` `/transacao/extrato`
-
-Essa é a rota que será chamada quando o usuario logado quiser obter o extrato de todas as suas transações cadastradas.
-**Lembre-se:** Deverá ser possível consultar **apenas** transações associadas ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
-
-- **Requisição**  
-    Sem parâmetros de rota ou de query.  
-    O corpo (body) da requisição não deverá possuir nenhum conteúdo.
-
-- **Resposta**  
-    Em caso de **sucesso**, deveremos enviar no corpo (body) da resposta um objeto contendo a soma de todas as transações do tipo `entrada` e a soma de todas as transações do tipo `saida`.  
-    Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
-
-- **REQUISITOS OBRIGATÓRIOS**:
-  - Em caso de não existir transações do tipo `entrada` cadastradas para o usuário logado, o valor retornado no corpo (body) da resposta deverá ser 0.
-  - Em caso de não existir transações do tipo `saida` cadastradas para o usuário logado, o valor retornado no corpo (body) da resposta deverá ser 0.
-
-**Importante: A criação desta rota, no arquivo `rotas.js`, deverá acontecer antes da criação da rota de detalhamento de uma transação (`GET /transacao/:id`), caso contrário, esta rota nunca será possível ser acessada.**
-
-#### **Exemplo de requisição**
-
-```javascript
-// GET /transacao/extrato
-// Sem conteúdo no corpo (body) da requisição
-```
-
-#### **Exemplos de resposta**
-
-```javascript
-// HTTP Status 200 / 201 / 204
-{
- "entrada": 300000,
- "saida": 15800
-}
-```
-
----
-# Pessoa A
-## **EXTRA**
-
-**ATENÇÃO!:** Esta parte extra não é obrigatória e recomendamos que seja feita apenas quando terminar toda a parte obrigatória acima.
-
-### **Filtrar transações por categoria**
-
-Na funcionalidade de listagem de transações do usuário logado (**GET /transacao**), deveremos incluir um parâmetro do tipo query **filtro** para que seja possível consultar apenas transações das categorias informadas.
-
-**Lembre-se:** Deverão ser retornadas **apenas** transações associadas ao usuário logado, que deverá ser identificado através do ID presente no token de validação.
-
-- **Requisição**  
-    Parâmetro opcional do tipo query **filtro**.
-    Não deverá possuir conteúdo no corpo (body) da requisição.
-
-- **Resposta**  
-    Em caso de **sucesso**, o corpo (body) da resposta deverá possuir um array dos objetos (transações) encontradas.  
-    Em caso de **falha na validação**, a resposta deverá possuir **_status code_** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.
-
-- **REQUISITOS OBRIGATÓRIOS**
-  - O usuário deverá ser identificado através do ID presente no token de validação
-  - O parâmetro opcional do tipo query **filtro**, quando enviado, deverá ser sempre um array contendo a descrição de uma ou mais categorias.
-  - O endpoint deverá responder com um array de todas as transações associadas ao usuário que sejam da categorias passadas no parâmetro query. Caso não exista nenhuma transação associada ao usuário deverá responder com array vazio.
-
-#### **Exemplo de requisição**
-
-```javascript
-// GET /transacao?filtro[]=roupas&filtro[]=salários
-// Sem conteúdo no corpo (body) da requisição
-```
-
-#### **Exemplos de resposta**
-
-```javascript
-// HTTP Status 200 / 201 / 204
-[
-    {
-        id: 1,
-        tipo: "saida",
-        descricao: "Sapato amarelo",
-        valor: 15800,
-        data: "2022-03-23T15:35:00.000Z",
-        usuario_id: 5,
-        categoria_id: 11,
-        categoria_nome: "Roupas",
-    },
-    {
-        id: 3,
-        tipo: "entrada",
-        descricao: "Salário",
-        valor: 300000,
-        data: "2022-03-24T15:30:00.000Z",
-        usuario_id: 5,
-        categoria_id: 14,
-        categoria_nome: "Salário",
-    },
-]
-```
-
-```javascript
-// HTTP Status 200 / 201 / 204
-[]
-```
-
----
-
-Link do deploy da API somente para testes: [link](https://desafio-backend-03-dindin.pedagogico.cubos.academy/)
-
-**Este link é somente para testes (ou seja, será possível realizar requisições a esta API através deste link visando AUXILIAR principalmente o desenvolvimento do desafio de Front-end, o que permitirá o desenvolvimento em paralelo de ambos os desafios)!**
-
----
-
-**LEMBRE-SE**: Feito é melhor que perfeito, mas nunca mal feito!!!
-
-###### tags: `back-end` `módulo 3` `nodeJS` `PostgreSQL` `API REST` `desafio`
